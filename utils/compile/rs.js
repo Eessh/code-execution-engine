@@ -8,7 +8,14 @@ const compileRS = async (code, folderPath) => {
   }
   catch(err) {
     console.log(`Error while saving code to file: ${folderPath}/code.rs, Error: ${err}`);
-    return null;
+    return {
+      code,
+      output: {
+        error: `Error while saving code to file: ${folderPath}/code.rs, Error: ${err}`,
+        stdout: "",
+        stderr: ""
+      }
+    };
   }
   try {
     const {stdout, stderr} = await exec(`rustc ${folderPath}/code.rs -o ${folderPath}/code`);

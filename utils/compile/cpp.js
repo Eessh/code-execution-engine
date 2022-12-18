@@ -8,7 +8,14 @@ const compileCPP = async (code, folderPath) => {
   }
   catch(err) {
     console.log(`Error while saving code to file: ${folderPath}/code.cpp, Error: ${err}`);
-    return null;
+    return {
+      code,
+      output: {
+        error: `Error while saving code to file: ${folderPath}/code.cpp, Error: ${err}`,
+        stdout: "",
+        stderr: ""
+      }
+    };
   }
   try {
     const {stdout, stderr} = await exec(`g++ ${folderPath}/code.cpp -o ${folderPath}/code`);
