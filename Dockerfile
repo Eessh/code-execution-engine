@@ -1,11 +1,7 @@
 FROM alpine:latest
 
 RUN apk update
-RUN apk --no-cache add gcc
-RUN apk --no-cache add g++
-RUN apk --no-cache add python3
-RUN apk --no-cache add nodejs
-RUN apk --no-cache add npm
+RUN apk --no-cache add gcc g++ python3 nodejs npm
 
 RUN mkdir /app
 WORKDIR /app
@@ -18,4 +14,5 @@ COPY . .
 # ENV PORT=$PORT_ARG
 EXPOSE 5000
 
-CMD [ "npm", "start" ]
+# CMD [ "npm", "start" ]
+CMD ["node", "index.js"]
